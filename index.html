@@ -1,0 +1,55 @@
+<html>
+    <meta charset="utf-8" />
+    <title>Monolith</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+    <div class="container">
+        <h1 id="headline">Monolith</h1>
+        <p style="padding:2em; font-size: 2em; font-weight:400;">Collaborative Musical Performance</p>
+        <div id="countdown">
+          <ul>
+            <li><span id="days"></span>days</li>
+            <li><span id="hours"></span>Hours</li>
+            <li><span id="minutes"></span>Minutes</li>
+            <li><span id="seconds"></span>Seconds</li>
+          </ul>
+        </div>
+        <a href="https://facebook.com" style="color:white; margin-top: 5em;">Join the event</a>
+      </div>
+
+      <script>
+          (function () {
+    const second = 1000,
+          minute = second * 60,
+          hour = minute * 60,
+          day = hour * 24;
+  
+    let birthday = "Dec 04, 2020 20:00:00",
+        countDown = new Date(birthday).getTime(),
+        x = setInterval(function() {    
+  
+          let now = new Date().getTime(),
+              distance = countDown - now;
+  
+          document.getElementById("days").innerText = Math.floor(distance / (day)),
+            document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+            document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+            document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+  
+          //do something later when date is reached
+          if (distance < 0) {
+            let headline = document.getElementById("headline"),
+                countdown = document.getElementById("countdown"),
+                content = document.getElementById("content");
+  
+            headline.innerText = "";
+            countdown.style.display = "none";
+            content.style.display = "block";
+            clearInterval(x);
+          }
+          //seconds
+        }, 0)
+    }());
+      </script>
+</html>
